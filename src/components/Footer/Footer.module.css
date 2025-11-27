@@ -1,0 +1,125 @@
+/* Màu nền chính cho footer */
+.footer {
+  background-color: #1a1a2e; /* Màu nền tối từ Hero section */
+  color: #c7c7c7; /* Màu chữ xám nhạt */
+  padding: 60px 50px 0; /* Padding trên/dưới, trái/phải */
+  margin-top: 100px; /* Khoảng cách với section cuối cùng */
+}
+
+/* Container chính chia các cột */
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép xuống hàng trên mobile */
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto; /* Căn giữa container */
+}
+
+/* Style cho mỗi cột */
+.col {
+  flex: 1; /* Mỗi cột chiếm không gian bằng nhau */
+  min-width: 220px; /* Chiều rộng tối thiểu trước khi xuống hàng */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Khoảng cách giữa các item trong 1 cột */
+}
+
+/* Cột đầu tiên (Logo) chiếm nhiều không gian hơn 1 chút */
+.col:first-child {
+  flex-basis: 30%;
+}
+
+/* === Cột 1: Logo & Socials === */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  /* Hiệu ứng gradient giống thiết kế */
+  background: linear-gradient(90deg, #b39ddb, #80deea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 350px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 10px;
+}
+
+.socialIcons a {
+  color: #c7c7c7;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #444;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #00bcd4; /* Màu xanh ngọc khi hover */
+  border-color: #00bcd4;
+  background-color: rgba(0, 188, 212, 0.1);
+}
+
+/* === Cột 2, 3, 4: Links === */
+.colTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.col a {
+  color: #c7c7c7;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.col a:hover {
+  color: #00bcd4;
+}
+
+/* === Thanh Dưới Cùng === */
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Xuống hàng trên mobile */
+  gap: 20px;
+  padding: 25px 0;
+  margin-top: 40px;
+  border-top: 1px solid #333; /* Đường kẻ phân cách */
+  font-size: 0.9rem;
+}
+
+.bottomBar p {
+  margin: 0;
+}
+
+.bottomBar div {
+  display: flex;
+  gap: 30px;
+}
+
+.bottomBar a {
+  color: #c7c7c7;
+  text-decoration: none;
+}
+
+.bottomBar a:hover {
+  color: white;
+}

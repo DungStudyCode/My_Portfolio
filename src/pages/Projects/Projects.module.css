@@ -1,0 +1,141 @@
+.projects {
+  padding: 100px 50px;
+  background-color: #121212;
+  color: #c7c7c7;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  text-align: center;
+  color: #a0aec0;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* BỐ CỤC 3 CỘT BẰNG CSS GRID */
+.gridContainer {
+  display: grid;
+  /* 3 cột bằng nhau, khoảng cách 30px */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === STYLE CHO MỖI THẺ DỰ ÁN === */
+.card {
+  background-color: #1a1a2e;
+  border-radius: 12px;
+  overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài */
+  border: 1px solid #2a2a3a;
+  display: flex; /* Dùng flex cho nội dung bên trong thẻ */
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Hiệu ứng nổi nhẹ */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage {
+  width: 100%;
+  height: 200px; /* Chiều cao cố định cho ảnh */
+  object-fit: cover; /* Đảm bảo ảnh vừa vặn và không bị méo */
+}
+
+.cardContent {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Để nội dung chiếm hết không gian còn lại */
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  color: white;
+  margin: 0 0 10px 0;
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  color: #a0aec0;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1; /* Để mô tả chiếm hết không gian giữa tiêu đề và tags/links */
+}
+
+/* Các tag công nghệ */
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.techTag {
+  background-color: #3e3e50;
+  color: #e0e0e0;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap; /* Tránh tag bị xuống dòng chữ */
+}
+
+/* Style riêng cho các tag màu tím (ví dụ) */
+.techTag:nth-child(3n) { 
+  background-color: rgba(179, 157, 219, 0.2);
+  color: #b39ddb;
+}
+
+/* Các nút link Demo/Repo */
+.links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.linkButton {
+  background-color: transparent;
+  border: 1px solid #444;
+  color: #c7c7c7;
+  padding: 8px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.linkButton:hover {
+  background-color: #00bcd4;
+  border-color: #00bcd4;
+  color: white;
+}
+
+/* Responsive: Dưới 992px, 3 cột thành 2 cột */
+@media (max-width: 992px) {
+  .gridContainer {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Responsive: Dưới 600px, 2 cột thành 1 cột */
+@media (max-width: 600px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+}

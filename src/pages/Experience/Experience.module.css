@@ -1,0 +1,117 @@
+.experience {
+  padding: 100px 50px;
+  background-color: #121212;
+  color: #c7c7c7;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  text-align: center;
+  color: #a0aec0;
+  margin-bottom: 50px;
+}
+
+/* Container chứa các thẻ kinh nghiệm */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Khoảng cách giữa 2 thẻ */
+}
+
+/* Style cho mỗi thẻ */
+.card {
+  background-color: #1a1a2e; /* Nền tối (giống Hero/Footer) */
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #2a2a3a;
+}
+
+.jobTitle {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0;
+}
+
+.company {
+  font-size: 1rem;
+  color: #00bcd4; /* Màu xanh ngọc */
+  margin: 5px 0 15px;
+  font-weight: 500;
+}
+
+/* Vị trí & Ngày tháng */
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+.info span {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Khoảng cách icon và text */
+}
+
+/* Tiêu đề phụ (Responsibilities, Technologies) */
+.subHeading {
+  font-size: 1.1rem;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+/* Danh sách nhiệm vụ */
+.responsibilities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.responsibilities li {
+  display: flex;
+  align-items: flex-start; /* Căn lề đẹp khi text dài 2-3 dòng */
+  gap: 10px;
+  line-height: 1.6; /* Dãn dòng */
+}
+
+.checkIcon {
+  color: #00bcd4; /* Màu xanh ngọc */
+  font-size: 0.9rem;
+  margin-top: 5px; /* Căn icon với dòng đầu tiên */
+}
+
+/* Các "tag" công nghệ */
+.technologies {
+  display: flex;
+  flex-wrap: wrap; /* Tự động xuống hàng */
+  gap: 10px;
+}
+
+.techTag {
+  background-color: #3e3e50; /* Màu nền cho tag */
+  color: #e0e0e0; /* Màu chữ cho tag */
+  padding: 5px 12px;
+  border-radius: 15px; /* Bo tròn */
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Style riêng cho các tag màu tím (ví dụ) */
+.techTag:nth-child(3n) { /* Ví dụ: Cứ 3 tag thì có 1 tag màu khác */
+  background-color: rgba(179, 157, 219, 0.2);
+  color: #b39ddb;
+}

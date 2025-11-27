@@ -1,0 +1,104 @@
+.skills {
+  padding: 100px 50px;
+  background-color: #121212;
+  color: #c7c7c7;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  text-align: center;
+  color: #a0aec0;
+  margin-bottom: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* BỐ CỤC 2x2 */
+.gridContainer {
+  display: grid;
+  /* Tạo 2 cột bằng nhau */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Style cho mỗi thẻ trong 4 thẻ */
+.skillCard {
+  background-color: #1a1a2e;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #2a2a3a;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.3rem;
+  color: white;
+  margin: 0 0 25px 0;
+}
+
+.icon {
+  color: #00bcd4; /* Màu xanh ngọc cho icon */
+  font-size: 1.5rem;
+}
+
+/* Danh sách các thanh kỹ năng */
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Khoảng cách giữa các thanh */
+}
+
+/* Một hàng kỹ năng (Tên + Thanh + Điểm) */
+.skillItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.skillName {
+  flex-basis: 30%; /* Cho tên kỹ năng 1 độ rộng cố định */
+  white-space: nowrap; /* Tránh xuống dòng */
+  font-size: 0.95rem;
+}
+
+/* THANH TIẾN TRÌNH */
+.progressBar {
+  flex: 1; /* Cho thanh tiến trình chiếm phần còn lại */
+  height: 8px;
+  background-color: #2a2a3a; /* Màu nền của thanh */
+  border-radius: 4px;
+  overflow: hidden; /* Quan trọng để bo tròn .progressFill */
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #00bcd4; /* Màu xanh ngọc */
+  border-radius: 4px;
+  /* Hiệu ứng chuyển động mượt mà khi tải trang */
+  transition: width 0.8s ease-in-out; 
+}
+
+.skillScore {
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Responsive: Trên màn hình nhỏ (mobile), 2 cột sẽ thành 1 cột */
+@media (max-width: 900px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+  }
+}

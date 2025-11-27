@@ -1,0 +1,105 @@
+/* src/components/Header/Header.module.css */
+
+/* 1. SỬA LẠI CLASS .header CÓ SẴN */
+/* Đây là trạng thái mặc định (khi ở trên cùng) */
+.header {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  z-index: 100;
+  box-sizing: border-box;
+
+  /* === PHẦN QUAN TRỌNG: ANIMATION === */
+  background: transparent; /* Nền trong suốt lúc đầu */
+  border-bottom: 1px solid transparent; /* Viền trong suốt lúc đầu */
+
+  /* Đây là chìa khóa: Thêm hiệu ứng chuyển động mượt mà! */
+  transition: background-color 0.4s ease-out, 
+              border-color 0.4s ease-out,
+              backdrop-filter 0.4s ease-out;
+}
+
+/* 2. THÊM CLASS .scrolled MỚI (khi cuộn xuống) */
+.scrolled {
+  /* Sử dụng màu nền từ Hero (1a1a2e) nhưng với độ mờ 85% 
+    Bạn có thể điều chỉnh độ mờ (0.85) theo ý thích 
+  */
+  background-color: rgba(26, 26, 46, 0.85);
+  
+  /* Đây là hiệu ứng "kính mờ" (frosted glass) 
+    Nó sẽ làm mờ bất cứ thứ gì BÊN DƯỚI header
+  */
+  backdrop-filter: blur(10px);
+  
+  /* Thêm một đường viền mỏng để phân tách */
+  border-bottom: 1px solid #3e3e50;
+}
+
+
+/* ... (Giữ nguyên các style còn lại: .logo, .nav, .nav a, .nav a.active, .contactButton) ... */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+}
+
+/* 1. SỬA ĐỔI CLASS .nav a */
+.nav a {
+  color: #c7c7c7; /* Màu xám nhạt mặc định */
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent; 
+
+  /* === PHẦN THÊM MỚI === */
+  /* Đặt vị trí ban đầu */
+  transform: translateY(0);
+  
+  /* Thêm 'transform' vào transition để tạo hiệu ứng mượt mà */
+  transition: color 0.3s ease, 
+              border-bottom-color 0.3s ease, 
+              transform 0.3s ease;
+}
+
+
+/* 2. SỬA ĐỔI CLASS .nav a:hover */
+.nav a:hover {
+  color: white; /* Đổi sang màu trắng khi hover */
+  
+  /* === PHẦN THÊM MỚI === */
+  /* Di chuyển text lên trên 3px */
+  transform: translateY(-3px);
+}
+
+/* 3. Style cho link đang active (giữ nguyên) */
+.nav a.active {
+  color: #00bcd4; /* Màu xanh ngọc */
+  border-bottom-color: #00bcd4;
+}
+
+
+
+.contactButton {
+  background-color: #00bcd4;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.contactButton:hover {
+  background-color: #0097a7;
+}

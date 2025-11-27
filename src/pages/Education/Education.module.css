@@ -1,0 +1,105 @@
+.education {
+  padding: 100px 50px;
+  background-color: #121212; /* Nền đen/xám tối */
+  color: #c7c7c7;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  text-align: center;
+  color: #a0aec0;
+  margin-bottom: 50px;
+}
+
+/* Container chứa các thẻ học vấn */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Khoảng cách giữa 2 thẻ */
+}
+
+/* Style cho mỗi thẻ */
+.card {
+  background-color: #1a1a2e; /* Nền tối (giống Hero/Footer) */
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #2a2a3a; /* Viền nhẹ */
+}
+
+/* Header của thẻ (Bằng cấp + GPA) */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.degree {
+  font-size: 1.5rem;
+  color: white;
+  margin: 0;
+}
+
+.major {
+  font-size: 1rem;
+  color: #00bcd4; /* Màu xanh ngọc */
+  margin: 5px 0 0;
+}
+
+.gpa {
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  white-space: nowrap; /* Không xuống hàng */
+  margin-left: 20px;
+}
+
+/* Chi tiết (Trường, Ngày tháng) */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+.details span {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Khoảng cách giữa icon và text */
+}
+
+/* Thành tích */
+.achievements h4 {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.achievements ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievements li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.awardIcon {
+  color: #00bcd4; /* Màu xanh ngọc cho icon */
+  font-size: 1.1rem;
+}
