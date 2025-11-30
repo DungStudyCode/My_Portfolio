@@ -1,96 +1,72 @@
 import React from 'react';
 import styles from './Experience.module.css';
+import { FaBriefcase,FaCalendarAlt } from 'react-icons/fa';
 
-// 1. Import các icon cần thiết
-import { FaMapMarkerAlt, FaCalendarAlt, FaCheckCircle } from 'react-icons/fa';
-
-// 2. TẠO DỮ LIỆU KINH NGHIỆM
-// Cập nhật kinh nghiệm làm việc của bạn ở đây
 const experienceData = [
   {
-    title: "",
+    role: "",
     company: "",
-    location: "",
     date: "",
-    responsibilities: [
-      "",
-      "",
-      ""
-    ],
-    technologies: ["", "", "", ""]
+    description: "",
+    skills: ["React", "Redux", "Tailwind"]
   },
   {
-    title: "",
+    role: "",
     company: "",
-    location: "",
     date: "",
-    responsibilities: [
-      "",
-      "",
-      ""
-    ],
-    technologies: ["", "", "", ""]
+    description: "",
+    skills: ["HTML/CSS", "JavaScript", "Git"]
   },
-  {
-    title: "",
-    company: "",
-    location: "",
-    date: "",
-    responsibilities: [
-      "",
-      "",
-      ""
-    ],
-    technologies: ["", "", "", ""]
-  }
+  // Thêm các mục khác ở đây
 ];
 
-function Experience() {
+// ... (các phần import giữ nguyên)
+
+const Experience = () => {
   return (
-    <section id="experience" className={styles.experience}>
-      <h2 className={styles.title}>Professional Experience</h2>
-      <p className={styles.subtitle}>
-        My journey through various roles and projects in the engineering field.
+    <section className={styles.experience} id="experience">
+      <h2 className={styles.title}>Work Experience</h2>
+      <p className={styles.sectionIntro}>
+        My experience in building responsive, scalable, and user-focused web applications using modern web technologies.
       </p>
+      <div className={styles.timeline}>
+        {experienceData.map((item, index) => (
+          <div 
+            key={index} 
+            className={styles.timelineItem}
+            style={{ animationDelay: `${index * 0.2}s` }} 
+          >
+            <div className={styles.dot}></div>
 
-      {/* 3. Dùng .map() để render các thẻ kinh nghiệm */}
-      <div className={styles.container}>
-        {experienceData.map((job, index) => (
-          <div key={index} className={styles.card}>
-            
-            {/* Tiêu đề công việc và công ty */}
-            <h3 className={styles.jobTitle}>{job.title}</h3>
-            <p className={styles.company}>{job.company}</p>
-
-            {/* Thông tin (Vị trí & Ngày tháng) */}
-            <div className={styles.info}>
-              <span><FaMapMarkerAlt /> {job.location}</span>
-              <span><FaCalendarAlt /> {job.date}</span>
+            <div className={styles.content}>
+              <div className={styles.header}>
+                {/* --- SỬA Ở ĐÂY: Thêm FaBriefcase vào trước item.role --- */}
+                <h3 className={styles.role}>
+                  <FaBriefcase style={{ marginRight: '8px', fontSize: '0.9em' }} /> 
+                  {item.role}
+                </h3>
+                {/* -------------------------------------------------------- */}
+                
+                <span className={styles.company}>{item.company}</span>
+              </div>
+              
+              <div className={styles.date}>
+                <FaCalendarAlt /> {item.date}
+              </div>
+              
+              <p className={styles.description}>{item.description}</p>
+              
+              <div className={styles.tags}>
+                {item.skills.map((skill, i) => (
+                  <span key={i} className={styles.tag}>{skill}</span>
+                ))}
+              </div>
             </div>
-
-            {/* Nhiệm vụ chính */}
-            <h4 className={styles.subHeading}>Key Responsibilities</h4>
-            <ul className={styles.responsibilities}>
-              {job.responsibilities.map((task, i) => (
-                <li key={i}>
-                  <FaCheckCircle className={styles.checkIcon} /> {task}
-                </li>
-              ))}
-            </ul>
-
-            {/* Công nghệ & Công cụ */}
-            <h4 className={styles.subHeading}>Technologies & Tools</h4>
-            <div className={styles.technologies}>
-              {job.technologies.map((tech, i) => (
-                <span key={i} className={styles.techTag}>{tech}</span>
-              ))}
-            </div>
-
           </div>
         ))}
       </div>
     </section>
   );
-}
+};
 
 export default Experience;

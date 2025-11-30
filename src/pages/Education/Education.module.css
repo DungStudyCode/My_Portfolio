@@ -1,21 +1,31 @@
+/* === Education.module.css === */
+
 .education {
   padding: 100px 50px;
-  background-color: #121212; /* Nền đen/xám tối */
+  background-color: #121212;
   color: #c7c7c7;
+  /* Thêm một chút họa tiết nền mờ nếu muốn (optional) */
+  background-image: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #121212 70%);
 }
 
 .title {
   font-size: 2.5rem;
   color: white;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .subtitle {
   font-size: 1rem;
   text-align: center;
   color: #a0aec0;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Container chứa các thẻ học vấn */
@@ -24,66 +34,116 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 30px; /* Khoảng cách giữa 2 thẻ */
+  gap: 30px;
 }
 
-/* Style cho mỗi thẻ */
+/* === Style cho Card (Thẻ) === */
 .card {
-  background-color: #1a1a2e; /* Nền tối (giống Hero/Footer) */
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid #2a2a3a; /* Viền nhẹ */
+  background-color: #1a1a2e; /* Giữ màu nền tối */
+  padding: 35px;
+  border-radius: 16px;
+  border: 1px solid #2a2a3a; /* Viền mờ ban đầu */
+  
+  /* Hiệu ứng chuyển động mượt mà */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  position: relative;
+  overflow: hidden;
+
+  /* Animation xuất hiện */
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0; /* Ẩn trước khi animation chạy */
 }
 
-/* Header của thẻ (Bằng cấp + GPA) */
+/* Tạo độ trễ (delay) để các thẻ xuất hiện lần lượt */
+.container .card:nth-child(1) { animation-delay: 0.1s; }
+.container .card:nth-child(2) { animation-delay: 0.3s; }
+.container .card:nth-child(3) { animation-delay: 0.5s; }
+
+/* === Hiệu ứng Hover vào Card === */
+.card:hover {
+  transform: translateY(-10px); /* Nảy lên cao hơn chút */
+  border-color: #00bcd4; /* Viền sáng lên màu xanh */
+  background-color: #202035; /* Làm sáng nền thẻ một chút */
+  /* Đổ bóng màu xanh neon */
+  box-shadow: 0 15px 30px rgba(0, 188, 212, 0.15); 
+}
+
+/* === Header của thẻ === */
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Đường gạch chân mờ */
 }
 
 .degree {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: white;
   margin: 0;
+  font-weight: 600;
 }
 
 .major {
-  font-size: 1rem;
-  color: #00bcd4; /* Màu xanh ngọc */
-  margin: 5px 0 0;
+  font-size: 1.1rem;
+  color: #00bcd4;
+  margin: 8px 0 0;
+  font-weight: 500;
 }
 
+/* === Style GPA (Badge) === */
 .gpa {
-  font-size: 1rem;
-  color: white;
+  font-size: 0.95rem;
+  color: #00bcd4;
   font-weight: bold;
-  white-space: nowrap; /* Không xuống hàng */
+  white-space: nowrap;
+  
+  /* Style dạng thẻ bài (Pill) */
+  background-color: rgba(0, 188, 212, 0.1);
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 20px;
+  transition: background-color 0.3s;
 }
 
-/* Chi tiết (Trường, Ngày tháng) */
+.card:hover .gpa {
+  background-color: #00bcd4; /* Khi hover thẻ to, GPA đổi nền đặc */
+  color: #121212; /* Chữ chuyển thành màu đen cho dễ đọc */
+}
+
+/* === Chi tiết (Trường, Ngày tháng) === */
 .details {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row; /* Chuyển sang hàng ngang cho đẹp trên PC */
+  gap: 30px;
   margin-bottom: 25px;
   color: #a0aec0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .details span {
   display: flex;
   align-items: center;
-  gap: 10px; /* Khoảng cách giữa icon và text */
+  gap: 10px;
 }
 
-/* Thành tích */
+/* Icon trong phần details */
+.details span svg {
+  color: #00bcd4;
+}
+
+/* === Thành tích === */
 .achievements h4 {
   font-size: 1.1rem;
   color: white;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .achievements ul {
@@ -94,12 +154,61 @@
 
 .achievements li {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  align-items: flex-start; /* Căn lề trên để icon thẳng hàng với dòng đầu */
+  gap: 12px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #d1d5db;
+  
+  transition: transform 0.2s ease;
+}
+
+.achievements li:hover {
+  transform: translateX(5px); /* Dịch chuyển nhẹ sang phải khi hover vào dòng */
+  color: white;
 }
 
 .awardIcon {
-  color: #00bcd4; /* Màu xanh ngọc cho icon */
+  color: #ffc107; /* Màu vàng Gold nổi bật cho icon cúp/giải thưởng */
   font-size: 1.1rem;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* === Keyframes Animation === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive Mobile === */
+@media (max-width: 768px) {
+  .education {
+    padding: 60px 20px;
+  }
+
+  .card {
+    padding: 25px;
+  }
+
+  .cardHeader {
+    flex-direction: column; /* Trên mobile xếp dọc */
+    gap: 15px;
+  }
+
+  .gpa {
+    margin-left: 0; /* Bỏ margin trái vì đã xuống dòng */
+    align-self: flex-start; /* Căn trái */
+  }
+
+  .details {
+    flex-direction: column; /* Quay lại xếp dọc trên mobile */
+    gap: 10px;
+  }
 }

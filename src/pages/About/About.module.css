@@ -1,3 +1,4 @@
+/* === About.module.css === */
 /* Nền của section, màu tối */
 .about {
   padding: 200px 50px;
@@ -41,24 +42,28 @@
   line-height: 1.7;
 }
 
-/* Nút CV (Style giống nút 'Contact Me') */
+/* Nút CV */
 .cvButton {
-  background-color: #00bcd4; /* Màu xanh ngọc */
+  background-color: #00bcd4;
   color: white;
-  padding: 12px 25px;
-  border-radius: 8px;
+  padding: 12px 28px;
+  border-radius: 50px; /* Bo tròn kiểu viên thuốc nhìn hiện đại hơn */
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   
-  display: inline-flex; /* Để căn icon và chữ */
+  display: inline-flex;
   align-items: center;
-  gap: 10px; /* Khoảng cách giữa chữ và icon */
-  margin-top: 30px;
+  gap: 10px;
+  margin-top: 25px;
+  border: 2px solid transparent; /* Chuẩn bị cho hover */
 }
 
 .cvButton:hover {
-  background-color: #0097a7;
+  background-color: transparent;
+  color: #00bcd4;
+  border-color: #00bcd4;
+  transform: translateY(-3px); /* Nút nảy lên nhẹ khi hover */
 }
 
 /* === Cột Hình Ảnh === */
