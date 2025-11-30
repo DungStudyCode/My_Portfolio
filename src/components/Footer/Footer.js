@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Footer.module.css';
+// 1. Import Link từ react-router-dom để điều hướng nội bộ mượt mà
+import { Link } from 'react-router-dom';
 
-// Import các icon chúng ta cần từ thư viện 'react-icons'
-// 'Fa' là Font Awesome, 'Bs' là Bootstrap Icons, 'Fi' là Feather Icons
+// Import các icon
 import { FaPhone, FaLinkedin, FaGithub, FaFacebook} from 'react-icons/fa';
-// import { BsTwitter } from 'react-icons/bs';
-import { FiMail } from 'react-icons/fi'; // Ví dụ cho Email và Chat
+import { FiMail } from 'react-icons/fi'; 
 
 function Footer() {
   return (
@@ -14,47 +14,73 @@ function Footer() {
         
         {/* === Cột 1: Logo & Socials === */}
         <div className={styles.col}>
-          <a href="#home" className={styles.logo}>Portfolio</a>
+          {/* Dùng Link thay cho a href */}
+          <Link to="/" className={styles.logo}>Portfolio</Link>
           <p className={styles.description}>
             A professional portfolio showcasing my skills, projects, and achievements in engineering.
           </p>
+          
           {/* Hàng icon thứ nhất */}
           <div className={styles.socialIcons}>
             <a href="tel:+84123456789" aria-label="Phone"><FaPhone /></a>
             <a href="mailto:email@example.com" aria-label="Email"><FiMail /></a>
-            <a href="https://www.linkedin.com/in/dung-nguyen-tien-77aba1358/" aria-label="LinkedIn"><FaLinkedin /></a>
-            <a href="https://github.com/DungStudyCode" aria-label="GitHub"><FaGithub /></a>
-            {/* <a href="#" aria-label="Chat"><FiMessageSquare /></a> */}
-            {/* <a href="#" aria-label="Twitter"><BsTwitter /></a> */}
+            
+            {/* Đã thêm target="_blank" và rel="noopener noreferrer" */}
+            <a 
+              href="https://www.linkedin.com/in/dung-nguyen-tien-77aba1358/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+            
+            <a 
+              href="https://github.com/DungStudyCode" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
           </div>
+
           {/* Hàng icon thứ hai */}
           <div className={styles.socialIcons}>
-            <a href="https://www.facebook.com/nguyen.tien.dung.156492" aria-label="Facebook"><FaFacebook /></a>
-            {/* <a href="#" aria-label="Instagram"><FaInstagram /></a> */}
+            <a 
+              href="https://www.facebook.com/nguyen.tien.dung.156492" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebook />
+            </a>
           </div>
         </div>
 
         {/* === Cột 2: About === */}
         <div className={styles.col}>
           <h3 className={styles.colTitle}>About</h3>
-          <a href="#about">About Me</a>
-          <a href="#education">Education</a>
-          <a href="#skills">Skills</a>
+          {/* Cập nhật thành Link để tương thích với Router */}
+          <Link to="/about">About Me</Link>
+          <Link to="/education">Education</Link>
+          <Link to="/skills">Skills</Link>
         </div>
 
         {/* === Cột 3: Work === */}
         <div className={styles.col}>
           <h3 className={styles.colTitle}>Work</h3>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#certificates">Certificates</a> {/* Bạn cần tạo section này sau */}
+          <Link to="/experience">Experience</Link>
+          <Link to="/projects">Projects</Link>
+          {/* Link tạm thời đến trang chủ nếu chưa có trang certificates */}
+          <Link to="/">Certificates</Link> 
         </div>
 
         {/* === Cột 4: Connect === */}
         <div className={styles.col}>
           <h3 className={styles.colTitle}>Connect</h3>
-          {/* <a href="#">Blog</a> Bạn cần tạo trang này sau */}
-          <a href="#contact">Contact</a>
+          <Link to="/contact">Contact</Link>
+          {/* Resume là file tĩnh nên dùng thẻ a bình thường */}
           <a href="/resume.pdf" download="YourName_Resume.pdf">Resume</a>
         </div>
 
@@ -62,10 +88,9 @@ function Footer() {
       
       {/* === Thanh Dưới Cùng === */}
       <div className={styles.bottomBar}>
-        <p>© 2025 [Nguyễn Tiến Dũng]. All rights reserved.</p>
+        <p>© 2025 Nguyễn Tiến Dũng. All rights reserved.</p>
         <div>
-          {/* <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a> */}
+           {/* Placeholder cho Privacy Policy */}
         </div>
       </div>
     </footer>

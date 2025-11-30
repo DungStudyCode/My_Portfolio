@@ -1,39 +1,41 @@
-import React, { useCallback } from 'react';
-import styles from './Hero.module.css'; // Đảm bảo đường dẫn này đúng
-
-// 1. Import Link từ React Router
+import React from 'react';
+import styles from './Hero.module.css';
 import { Link } from 'react-router-dom';
-// Import thư viện nền
-import Particles from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
 
-// 2. Import các section bạn muốn thêm vào trang chủ
-// (Hãy chắc chắn đường dẫn này đúng, 
-// ví dụ: '../../pages/Projects/Projects' hoặc '../../sections/Projects/Projects'
-// tùy thuộc vào việc bạn đã đổi tên thư mục 'sections' thành 'pages' chưa)
-import Projects from '../Projects/Projects'; // Giả sử bạn đã đổi tên thành /pages
-import Skills from '../Skills/Skills';     // Giả sử bạn đã đổi tên thành /pages
-
+// Import các section khác (GIỮ NGUYÊN code cũ của bạn ở phần này)
+import Projects from '../Projects/Projects'; 
+import Skills from '../Skills/Skills';
+// ... import Experience nếu có
 
 function Hero() {
-  // Hàm này là bắt buộc để tải engine
-  const particlesInit = useCallback(async engine => {
-    await loadSlim(engine);
-  }, []);
-
   return (
-    // Dùng Fragment để bọc nhiều section
     <>
-      {/* === PHẦN 1: HERO (Với nội dung mới của bạn) === */}
+      {/* === PHẦN 1: HERO VỚI VIDEO BACKGROUND === */}
       <section id="home" className={styles.heroContainer}>
         
-        <Particles
-          id="tsparticles"
-          init={particlesInit}
-          options={particlesConfig} 
-          className={styles.particles}
-        />
+        {/* --- THÊM VIDEO VÀO ĐÂY --- */}
+        {/* autoPlay: Tự động chạy
+          loop: Lặp lại vô tận
+          muted: Tắt tiếng (BẮT BUỘC để trình duyệt cho phép tự động chạy)
+          playsInline: Bắt buộc cho iOS Safari
+        */}
+        <video 
+          className={styles.videoBackground} 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          {/* Đường dẫn bắt đầu bằng / nghĩa là tìm trong thư mục public */}
+          <source src="/video-bg.mp4" type="video/mp4" />
+          Trình duyệt của bạn không hỗ trợ thẻ video.
+        </video>
 
+        {/* Lớp phủ tối màu (Overlay) để làm nổi bật chữ */}
+        <div className={styles.overlay}></div>
+
+
+        {/* NỘI DUNG VĂN BẢN (Giữ nguyên) */}
         <div className={styles.content}>
           <h2 className={styles.subTitle}>
             WEB DEVELOPER & AI ENTHUSIAST
@@ -48,13 +50,12 @@ function Hero() {
           </p>
 
           <div className={styles.buttons}>
-            {/* 3. SỬA THÀNH <Link> CỦA ROUTER */}
             <Link to="/projects" className={styles.primaryButton}>
               View Projects <span>&rarr;</span>
             </Link>
             
             <a 
-              href="/resume.pdf" // File này phải nằm trong thư mục /public
+              href="/resume.pdf" 
               download="Dung_Portfolio_Resume.pdf" 
               className={styles.secondaryButton}
             >
@@ -64,64 +65,16 @@ function Hero() {
         </div>
       </section>
 
-      {/* === PHẦN 2: THÊM NỘI DUNG ĐỂ TRANG DÀI HƠN === */}
-      {/* (Bọc trong 1 div để đảm bảo nền tối) */}
-      <div style={{ backgroundColor: '#121212' }}>
+      {/* === PHẦN 2: CÁC SECTION KHÁC (Giữ nguyên) === */}
+      <div style={{ backgroundColor: '#121212', position: 'relative', zIndex: 2 }}>
         <Projects />
         <Skills />
-        {/* Bạn có thể thêm <Experience /> ở đây nếu muốn */}
+        {/* <Experience /> */}
       </div>
     </>
   );
 }
 
-// CẤU HÌNH CHO HIỆU ỨNG NỀN
-const particlesConfig = {
-  background: {
-    color: {
-      value: "#1a1a2e", // Màu nền
-    },
-  },
-  fpsLimit: 120,
-  particles: {
-    color: {
-      value: "#ffffff",
-    },
-    links: { // Đây là các đường nối
-      color: "#ffffff",
-      distance: 150,
-      enable: true,
-      opacity: 0.2,
-      width: 1,
-    },
-    move: {
-      direction: "none",
-      enable: true,
-      outModes: {
-        default: "bounce",
-      },
-      random: false,
-      speed: 1, // Tốc độ di chuyển
-      straight: false,
-    },
-    number: {
-      density: {
-        enable: true,
-        area: 800,
-      },
-      value: 80, // Số lượng hạt
-    },
-    opacity: {
-      value: 0.2,
-    },
-    shape: {
-      type: "circle", // Hình dạng hạt
-    },
-    size: {
-      value: { min: 1, max: 5 },
-    },
-  },
-  detectRetina: true,
-};
+// Đã xóa bỏ biến particlesConfig ở cuối file vì không còn dùng nữa.
 
 export default Hero;
