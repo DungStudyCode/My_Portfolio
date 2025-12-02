@@ -22,7 +22,7 @@ const educationData = [
     degree: "Professional Certificate",
     major: "Artificial Intelligence (AI)",
     university: "Samsung Innovation Campus (SIC)",
-    date: "2024",
+    date: "2025",
     gpa: "Excellent", // Hoặc để trống "" nếu không muốn hiện
     achievements: [
       "Mastered Python programming for Data Science and Machine Learning",

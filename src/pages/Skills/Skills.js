@@ -45,9 +45,8 @@ const skillCategories = [
     title: "Languages",
     icon: <FaLanguage />,
     skills: [
-      { name: "", level: 10 },
-      { name: "", level: 8 },
-      { name: "", level: 4 },
+      { name: "English", level: 5.5 },
+      { name: "China", level: 1 },
     ]
   }
 ];
