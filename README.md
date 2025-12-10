@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+# 🎨 Personal Portfolio Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Project Banner](src/assets/images/banner.png)
 
-## Available Scripts
+## 🚀 Introduction
 
-In the project directory, you can run:
+Welcome to my Personal Portfolio! This website is designed to showcase my technical skills, projects, and professional experience. It features a modern **Dark Theme**, fully responsive design, and smooth animations to provide an engaging user experience.
 
-### `npm start`
+link demo: https://my-portfolio-xi-woad-15.vercel.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Key Features
 
-### `npm test`
+* **⚡ Modern UI/UX:** Clean dark mode aesthetic with Glassmorphism effects in the header.
+* **📱 Fully Responsive:** Optimized layout for Desktop, Tablet, and Mobile devices.
+* **✨ Smooth Animations:** Scroll-triggered animations, hover effects, and interactive elements.
+* **📂 Project Showcase:** Detailed project cards with "Tech Stack" tags and links to GitHub/Live Demos.
+* **🛠 Technical Skills:** Visual grid layout categorizing skills into Frontend, Backend, and Tools.
+* **📧 Contact Form:** Functional contact form integrated with **EmailJS** (No backend required).
+* **📍 Smart Navigation:** Sticky header that auto-hides on scroll down and reveals on scroll up.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠️ Tech Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project was built using the following technologies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| Category | Technologies |
+| :--- | :--- |
+| **Core** | [ReactJS](https://reactjs.org/) (Hooks, Functional Components) |
+| **Routing** | [React Router DOM](https://reactrouter.com/) (v6) |
+| **Styling** | CSS Modules, Flexbox, Grid, Responsive Design |
+| **Icons** | [React Icons](https://react-icons.github.io/react-icons/) (FontAwesome 6, SimpleIcons) |
+| **Logic/Utils** | EmailJS, React Hooks (useState, useEffect) |
+| **Deployment** | [🔴 THAY ĐỔI Ở ĐÂY: Vercel / Netlify / GitHub Pages] |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## ⚙️ Installation & Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Follow these steps to run the project locally on your machine.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. Clone the repository
+```bash
+git clone [https://github.com/DungStudyCode/My_Portfolio]
+cd [portfilio]
+2. Install dependencies
+Make sure you have Node.js installed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Bash
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm install
+# or
+yarn install
+3. Configure EmailJS (Optional)
+To make the Contact Form work, create a .env file or update Contact.js with your credentials:
 
-## Learn More
+Create an account at EmailJS
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Get your Service ID, Template ID, and Public Key.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Run the development server
+Bash
 
-### Code Splitting
+npm start
+# or
+yarn start
+The app will open automatically at http://localhost:3000.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+📂 Project Structure
+Bash
 
-### Analyzing the Bundle Size
+src/
+├── assets/          # Images (Logos, Project Screenshots)
+├── components/      # Reusable components (Header, Footer, Buttons)
+├── pages/           # Main Page Sections
+│   ├── Home/        # Hero Section
+│   ├── About/       # About Me
+│   ├── Skills/      # Technical Skills Grid
+│   ├── Projects/    # Project Showcase
+│   ├── Experience/  # Work/Internship Timeline
+│   └── Contact/     # Contact Form
+├── App.js           # Main Entry Point & Routing
+└── index.css        # Global Styles (Variables, Resets)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+👤 Author
+[🔴 Nguyễn Tiến Dũng]
 
-### Making a Progressive Web App
+🌐 Website: [🔴 https://my-portfolio-xi-woad-15.vercel.app/]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+🐱 GitHub: [@username](https://github.com/DungStudyCode])
 
-### Advanced Configuration
+💼 LinkedIn: [https://www.linkedin.com/in/dung-nguyen-tien-77aba1358/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📝 License
+This project is licensed under the MIT License - see the LICENSE file for details.
