@@ -1,95 +1,84 @@
-/* src/components/Header/Header.module.css */
-
-/* 1. SỬA LẠI CLASS .header CÓ SẴN */
-/* Đây là trạng thái mặc định (khi ở trên cùng) */
+/* --- CẤU TRÚC CHUNG --- */
 .header {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
-  z-index: 100;
+  padding: 15px 50px; /* Giảm padding một chút cho gọn */
+  z-index: 1000; /* Tăng z-index để đè lên mọi thứ */
   box-sizing: border-box;
-
-  /* === PHẦN QUAN TRỌNG: ANIMATION === */
-  background: transparent; /* Nền trong suốt lúc đầu */
-  border-bottom: 1px solid transparent; /* Viền trong suốt lúc đầu */
-
-  /* Đây là chìa khóa: Thêm hiệu ứng chuyển động mượt mà! */
-  transition: background-color 0.4s ease-out, 
-              border-color 0.4s ease-out,
-              backdrop-filter 0.4s ease-out;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: all 0.4s ease-out;
 }
 
-/* 2. THÊM CLASS .scrolled MỚI (khi cuộn xuống) */
 .scrolled {
-  /* Sử dụng màu nền từ Hero (1a1a2e) nhưng với độ mờ 85% 
-    Bạn có thể điều chỉnh độ mờ (0.85) theo ý thích 
-  */
-  background-color: rgba(26, 26, 46, 0.85);
-  
-  /* Đây là hiệu ứng "kính mờ" (frosted glass) 
-    Nó sẽ làm mờ bất cứ thứ gì BÊN DƯỚI header
-  */
+  background-color: rgba(26, 26, 46, 0.9); /* Đậm hơn chút để dễ đọc */
   backdrop-filter: blur(10px);
-  
-  /* Thêm một đường viền mỏng để phân tách */
   border-bottom: 1px solid #3e3e50;
+  padding: 10px 50px; /* Thu nhỏ header khi cuộn */
 }
 
-
-/* ... (Giữ nguyên các style còn lại: .logo, .nav, .nav a, .nav a.active, .contactButton) ... */
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
+/* --- 1. LOGO ANIMATION --- */
+.logoWrapper {
+  display: flex;
+  align-items: center;
   text-decoration: none;
 }
 
-.nav {
+.logoImage {
+  height: 50px; /* Chiều cao cố định */
+  width: auto;
+  object-fit: contain;
+  
+  /* Animation mặc định: Xoay nhẹ hoặc nảy */
+  animation: floatLogo 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào logo: Phóng to và xoay */
+.logoImage:hover {
+  transform: scale(1.1) rotate(5deg);
+  cursor: pointer;
+}
+
+/* Định nghĩa chuyển động nảy nhẹ (Floating) */
+@keyframes floatLogo {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+/* --- 2. DESKTOP NAV --- */
+.navDesktop {
   display: flex;
   gap: 30px;
 }
 
-/* 1. SỬA ĐỔI CLASS .nav a */
-.nav a {
-  color: #c7c7c7; /* Màu xám nhạt mặc định */
+.navDesktop a {
+  color: #c7c7c7;
   text-decoration: none;
   font-weight: 500;
   padding-bottom: 5px;
-  border-bottom: 2px solid transparent; 
-
-  /* === PHẦN THÊM MỚI === */
-  /* Đặt vị trí ban đầu */
-  transform: translateY(0);
-  
-  /* Thêm 'transform' vào transition để tạo hiệu ứng mượt mà */
-  transition: color 0.3s ease, 
-              border-bottom-color 0.3s ease, 
-              transform 0.3s ease;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-
-/* 2. SỬA ĐỔI CLASS .nav a:hover */
-.nav a:hover {
-  color: white; /* Đổi sang màu trắng khi hover */
-  
-  /* === PHẦN THÊM MỚI === */
-  /* Di chuyển text lên trên 3px */
+.navDesktop a:hover {
+  color: white;
   transform: translateY(-3px);
 }
 
-/* 3. Style cho link đang active (giữ nguyên) */
-.nav a.active {
-  color: #00bcd4; /* Màu xanh ngọc */
+.navDesktop a.active {
+  color: #00bcd4;
   border-bottom-color: #00bcd4;
 }
 
-
-
+/* Nút Contact Desktop */
 .contactButton {
   background-color: #00bcd4;
   color: white;
@@ -102,4 +91,91 @@
 
 .contactButton:hover {
   background-color: #0097a7;
+}
+
+/* --- 3. MOBILE ELEMENTS (Mặc định ẩn trên Desktop) --- */
+.hamburger {
+  display: none; /* Ẩn trên màn hình lớn */
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1001; /* Nổi lên trên overlay */
+}
+
+.mobileNav {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Giấu sang bên phải màn hình */
+  width: 70%;   /* Chiếm 70% màn hình */
+  height: 100vh;
+  background-color: #1a1a2e;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.4s ease-in-out; /* Hiệu ứng trượt */
+  z-index: 999;
+}
+
+.mobileNav.active {
+  right: 0; /* Trượt ra */
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  text-align: center;
+}
+
+.mobileNavLinks a {
+  color: #fff;
+  font-size: 1.2rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.mobileNavLinks a:hover,
+.mobileNavLinks a.active {
+  color: #00bcd4;
+}
+
+.contactButtonMobile {
+  background-color: #00bcd4;
+  padding: 12px 30px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* --- 4. RESPONSIVE MEDIA QUERIES --- */
+
+/* Khi màn hình nhỏ hơn 960px (Tablet & Mobile) */
+@media screen and (max-width: 960px) {
+  .header, .scrolled {
+    padding: 15px 20px; /* Giảm padding 2 bên */
+  }
+
+  /* Ẩn menu desktop và nút contact desktop */
+  .navDesktop, 
+  .desktopBtn {
+    display: none;
+  }
+
+  /* Hiện nút Hamburger */
+  .hamburger {
+    display: block;
+  }
+}
+
+/* Khi màn hình cực nhỏ (Điện thoại nhỏ) */
+@media screen and (max-width: 480px) {
+  .logoImage {
+    height: 40px; /* Logo nhỏ lại chút */
+  }
+  
+  .mobileNav {
+    width: 85%; /* Menu chiếm rộng hơn trên đt nhỏ */
+  }
 }

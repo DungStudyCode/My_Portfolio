@@ -1,141 +1,183 @@
+/* === Projects.module.css === */
+
 .projects {
-  padding: 100px 50px;
+  padding: 100px 20px;
   background-color: #121212;
   color: #c7c7c7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .title {
   font-size: 2.5rem;
   color: white;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .subtitle {
-  font-size: 1rem;
   text-align: center;
   color: #a0aec0;
   margin-bottom: 50px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1.1rem;
 }
 
-/* BỐ CỤC 3 CỘT BẰNG CSS GRID */
-.gridContainer {
+/* === GRID LAYOUT === */
+.grid {
   display: grid;
-  /* 3 cột bằng nhau, khoảng cách 30px */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
+  /* Tự động chia cột: Tối thiểu 320px, nếu còn chỗ thì chia đều */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
 }
 
-/* === STYLE CHO MỖI THẺ DỰ ÁN === */
+/* === CARD STYLE === */
 .card {
   background-color: #1a1a2e;
-  border-radius: 12px;
-  overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài */
+  border-radius: 16px;
+  overflow: hidden; /* Quan trọng: Để ảnh phóng to không bị tràn ra ngoài */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   border: 1px solid #2a2a3a;
-  display: flex; /* Dùng flex cho nội dung bên trong thẻ */
-  flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Animation xuất hiện */
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Hiệu ứng nổi nhẹ */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px); /* Card bay lên nhẹ */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Bóng đổ đậm hơn */
+  border-color: #00bcd4; /* Viền sáng màu xanh */
 }
 
-.cardImage {
+/* === IMAGE & OVERLAY AREA === */
+.imageContainer {
+  position: relative; /* Để overlay căn theo khung này */
   width: 100%;
-  height: 200px; /* Chiều cao cố định cho ảnh */
-  object-fit: cover; /* Đảm bảo ảnh vừa vặn và không bị méo */
+  height: 220px; /* Chiều cao cố định cho ảnh */
+  overflow: hidden;
 }
 
-.cardContent {
-  padding: 25px;
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease; /* Thời gian phóng to ảnh */
+}
+
+/* Hiệu ứng: Khi hover vào Card, ảnh sẽ phóng to 1.1 lần */
+.card:hover .projectImage {
+  transform: scale(1.1); 
+}
+
+/* === OVERLAY (Lớp phủ chứa nút) === */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Nền đen mờ */
   display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* Để nội dung chiếm hết không gian còn lại */
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  
+  /* Ẩn mặc định */
+  opacity: 0;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(3px); /* Làm mờ ảnh phía sau overlay (Glassmorphism nhẹ) */
 }
 
-.cardTitle {
-  font-size: 1.3rem;
+/* Hiệu ứng: Khi hover vào Card, Overlay hiện ra */
+.card:hover .overlay {
+  opacity: 1;
+}
+
+/* Nút bấm trong overlay */
+.btnLink {
+  text-decoration: none;
   color: white;
-  margin: 0 0 10px 0;
+  background-color: #00bcd4;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, background-color 0.2s;
 }
 
-.cardDescription {
+.btnLink:hover {
+  background-color: white; /* Đổi màu nền thành trắng */
+  color: #121212; /* Chữ màu đen */
+  transform: scale(1.1);
+}
+
+/* === CONTENT AREA === */
+.content {
+  padding: 25px;
+}
+
+.projectTitle {
+  font-size: 1.4rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.projectDesc {
   font-size: 0.95rem;
   color: #a0aec0;
   line-height: 1.6;
   margin-bottom: 20px;
-  flex-grow: 1; /* Để mô tả chiếm hết không gian giữa tiêu đề và tags/links */
+  
+  /* --- PHẦN SỬA ĐỔI --- */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Dòng cũ: Dành cho trình duyệt hiện tại */
+  line-clamp: 3;         /* THÊM DÒNG NÀY: Dành cho chuẩn tương lai */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* -------------------- */
 }
 
-/* Các tag công nghệ */
-.technologies {
+/* Tags (Tech Stack) */
+.techStack {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  gap: 10px;
 }
 
-.techTag {
-  background-color: #3e3e50;
-  color: #e0e0e0;
-  padding: 4px 10px;
-  border-radius: 12px;
+.tag {
   font-size: 0.8rem;
-  font-weight: 500;
-  white-space: nowrap; /* Tránh tag bị xuống dòng chữ */
+  color: #00bcd4;
+  background-color: rgba(0, 188, 212, 0.1);
+  padding: 5px 12px;
+  border-radius: 15px;
 }
 
-/* Style riêng cho các tag màu tím (ví dụ) */
-.techTag:nth-child(3n) { 
-  background-color: rgba(179, 157, 219, 0.2);
-  color: #b39ddb;
-}
-
-/* Các nút link Demo/Repo */
-.links {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.linkButton {
-  background-color: transparent;
-  border: 1px solid #444;
-  color: #c7c7c7;
-  padding: 8px 15px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-}
-
-.linkButton:hover {
-  background-color: #00bcd4;
-  border-color: #00bcd4;
-  color: white;
-}
-
-/* Responsive: Dưới 992px, 3 cột thành 2 cột */
-@media (max-width: 992px) {
-  .gridContainer {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Responsive: Dưới 600px, 2 cột thành 1 cột */
-@media (max-width: 600px) {
-  .gridContainer {
-    grid-template-columns: 1fr;
+/* Responsive */
+@media (max-width: 768px) {
+  .projects {
+    padding: 60px 20px;
+  }
+  .imageContainer {
+    height: 200px;
   }
 }

@@ -13,7 +13,7 @@ const educationData = [
     date: "2023 - Present",
     gpa: "3.2/4.0", // Bạn có thể sửa điểm số thực tế
     achievements: [
-      "Academic Scholarship for excellent performance (2023-2024)",
+      "Have excellent academic performance (2023-2024)",
       "Active member of the university's IT Club",
       "Participated in Student Scientific Research projects"
     ]

@@ -1,5 +1,7 @@
+/* === Skills.module.css === */
+
 .skills {
-  padding: 100px 50px;
+  padding: 100px 20px;
   background-color: #121212;
   color: #c7c7c7;
 }
@@ -8,97 +10,108 @@
   font-size: 2.5rem;
   color: white;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
 .subtitle {
-  font-size: 1rem;
   text-align: center;
   color: #a0aec0;
-  margin-bottom: 50px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 60px;
+  font-size: 1.1rem;
 }
 
-/* BỐ CỤC 2x2 */
-.gridContainer {
-  display: grid;
-  /* Tạo 2 cột bằng nhau */
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 30px;
-  max-width: 1200px;
+.container {
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-/* Style cho mỗi thẻ trong 4 thẻ */
-.skillCard {
-  background-color: #1a1a2e;
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid #2a2a3a;
+/* === Category Section === */
+.categorySection {
+  margin-bottom: 50px;
 }
 
-.cardTitle {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.3rem;
-  color: white;
-  margin: 0 0 25px 0;
-}
-
-.icon {
-  color: #00bcd4; /* Màu xanh ngọc cho icon */
+.categoryTitle {
   font-size: 1.5rem;
+  color: #00bcd4; /* Màu xanh ngọc */
+  margin-bottom: 25px;
+  border-left: 4px solid #00bcd4;
+  padding-left: 15px;
+  display: inline-block;
 }
 
-/* Danh sách các thanh kỹ năng */
-.skillsList {
+/* === Grid Layout === */
+.grid {
+  display: grid;
+  /* Grid tự động co giãn: Tối thiểu 140px/thẻ */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 25px;
+}
+
+/* === Skill Card === */
+.skillCard {
+  background-color: #1a1a2e; /* Nền tối */
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Khoảng cách giữa các thanh */
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  cursor: pointer;
+  
+  /* Animation Setup */
+  opacity: 0;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  transition: all 0.3s ease;
 }
 
-/* Một hàng kỹ năng (Tên + Thanh + Điểm) */
-.skillItem {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.iconWrapper {
+  font-size: 2.5rem;
+  color: #a0aec0;
+  transition: color 0.3s ease;
 }
 
 .skillName {
-  flex-basis: 30%; /* Cho tên kỹ năng 1 độ rộng cố định */
-  white-space: nowrap; /* Tránh xuống dòng */
-  font-size: 0.95rem;
-}
-
-/* THANH TIẾN TRÌNH */
-.progressBar {
-  flex: 1; /* Cho thanh tiến trình chiếm phần còn lại */
-  height: 8px;
-  background-color: #2a2a3a; /* Màu nền của thanh */
-  border-radius: 4px;
-  overflow: hidden; /* Quan trọng để bo tròn .progressFill */
-}
-
-.progressFill {
-  height: 100%;
-  background-color: #00bcd4; /* Màu xanh ngọc */
-  border-radius: 4px;
-  /* Hiệu ứng chuyển động mượt mà khi tải trang */
-  transition: width 0.8s ease-in-out; 
-}
-
-.skillScore {
-  color: white;
+  font-size: 1rem;
   font-weight: 500;
-  font-size: 0.9rem;
+  color: white;
 }
 
-/* Responsive: Trên màn hình nhỏ (mobile), 2 cột sẽ thành 1 cột */
-@media (max-width: 900px) {
-  .gridContainer {
-    grid-template-columns: 1fr;
+/* === Hover Effects === */
+.skillCard:hover {
+  transform: translateY(-8px); /* Bay lên */
+  background-color: #202035;
+  border-color: #00bcd4;
+  box-shadow: 0 10px 20px rgba(0, 188, 212, 0.2); /* Phát sáng Neon */
+}
+
+.skillCard:hover .iconWrapper {
+  color: #00bcd4; /* Icon đổi màu xanh */
+  transform: scale(1.1); /* Icon phóng to nhẹ */
+}
+
+/* === Animation Keyframes === */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 15px;
+  }
+  
+  .iconWrapper {
+    font-size: 2rem;
   }
 }

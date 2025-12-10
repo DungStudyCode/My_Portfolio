@@ -1,105 +1,79 @@
 import React from 'react';
 import styles from './Skills.module.css';
 
-// 1. Import các icon cần thiết
-import { FaTools, FaCode, FaBrain, FaLanguage } from 'react-icons/fa';
+// Import các Icon cần thiết (Bạn có thể thêm bớt tùy ý)
+import { 
+  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPython, FaGitAlt, FaJava 
+} from "react-icons/fa6";
+import { SiTensorflow, SiFlask, SiTailwindcss, SiMongodb, SiFirebase, SiCplusplus } from "react-icons/si";
 
-// 2. ĐỊNH NGHĨA DỮ LIỆU KỸ NĂNG
-// Cập nhật các kỹ năng và điểm số của bạn ở đây
-const skillCategories = [
+// Dữ liệu Skills chia theo nhóm
+const skillsData = [
   {
-    title: "Technical Skills",
-    icon: <FaTools />,
-    skills: [
-      { name: "", level: 0 },
-      { name: "", level: 8 },
-      { name: "", level: 7 },
-      { name: "", level: 8 },
-      { name: "", level: 6 },
+    category: "Frontend Development",
+    items: [
+      { name: "HTML5", icon: <FaHtml5 /> },
+      { name: "CSS3", icon: <FaCss3Alt /> },
+      { name: "JavaScript", icon: <FaJs /> },
+      { name: "ReactJS", icon: <FaReact /> },
+      { name: "Tailwind", icon: <SiTailwindcss /> },
     ]
   },
   {
-    title: "Software Proficiency",
-    icon: <FaCode />,
-    skills: [
-      { name: "", level: 9 },
-      { name: "", level: 8 },
-      { name: "", level: 9 },
-      { name: "", level: 7 },
-      { name: "", level: 6 },
-      { name: "", level: 8 },
+    category: "Backend & AI",
+    items: [
+      { name: "Python", icon: <FaPython /> },
+      { name: "Node.js", icon: <FaNodeJs /> },
+      { name: "Flask", icon: <SiFlask /> },
+      { name: "TensorFlow", icon: <SiTensorflow /> },
+      { name: "Java", icon: <FaJava /> },
+      { name: "C++", icon: <SiCplusplus /> },
     ]
   },
   {
-    title: "Soft Skills",
-    icon: <FaBrain />,
-    skills: [
-      { name: "", level: 9 },
-      { name: "", level: 8 },
-      { name: "", level: 7 },
-      { name: "", level: 8 },
-      { name: "", level: 7 },
-    ]
-  },
-  {
-    title: "Languages",
-    icon: <FaLanguage />,
-    skills: [
-      { name: "English", level: 5.5 },
-      { name: "China", level: 1 },
+    category: "Database & Tools",
+    items: [
+      { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "Firebase", icon: <SiFirebase /> },
+      { name: "Git / GitHub", icon: <FaGitAlt /> },
     ]
   }
 ];
 
-// Component cho thanh tiến trình (Progress Bar)
-const SkillBar = ({ skill }) => {
-  const progressPercentage = (skill.level / 10) * 100;
+const Skills = () => {
   return (
-    <div className={styles.skillItem}>
-      <span className={styles.skillName}>{skill.name}</span>
-      <div className={styles.progressBar}>
-        <div 
-          className={styles.progressFill}
-          style={{ width: `${progressPercentage}%` }} // Style động
-        ></div>
-      </div>
-      <span className={styles.skillScore}>{skill.level}/10</span>
-    </div>
-  );
-};
+    <section className={styles.skills} id="skills">
+      <div className={styles.container}>
+        <h2 className={styles.title}>Technical Skills</h2>
+        <p className={styles.subtitle}>The technologies and tools I use to build my projects.</p>
 
-
-function Skills() {
-  return (
-    <section id="skills" className={styles.skills}>
-      <h2 className={styles.title}>Skills & Expertise</h2>
-      <p className={styles.subtitle}>
-        A comprehensive overview of my technical abilities, software proficiency, soft skills, and language capabilities.
-      </p>
-
-      {/* 3. Dùng CSS Grid để tạo bố cục 2x2 */}
-      <div className={styles.gridContainer}>
-        {skillCategories.map((category, index) => (
-          
-          <div key={index} className={styles.skillCard}>
-            {/* Tiêu đề thẻ (Icon + Title) */}
-            <h3 className={styles.cardTitle}>
-              <span className={styles.icon}>{category.icon}</span>
-              {category.title}
-            </h3>
-
-            {/* Danh sách kỹ năng */}
-            <div className={styles.skillsList}>
-              {category.skills.map((skill, i) => (
-                <SkillBar key={i} skill={skill} />
+        {/* Lặp qua từng nhóm Category */}
+        {skillsData.map((grp, grpIndex) => (
+          <div key={grpIndex} className={styles.categorySection}>
+            <h3 className={styles.categoryTitle}>{grp.category}</h3>
+            
+            <div className={styles.grid}>
+              {grp.items.map((skill, index) => (
+                <div 
+                  key={index} 
+                  className={styles.skillCard}
+                  // Tính toán delay: Mỗi thẻ hiện chậm hơn thẻ trước 0.1s
+                  // Cộng dồn với grpIndex để các nhóm sau xuất hiện sau nhóm trước
+                  style={{ animationDelay: `${(grpIndex * 2 + index) * 0.1}s` }}
+                >
+                  <div className={styles.iconWrapper}>
+                    {skill.icon}
+                  </div>
+                  <span className={styles.skillName}>{skill.name}</span>
+                </div>
               ))}
             </div>
           </div>
-
         ))}
+
       </div>
     </section>
   );
-}
+};
 
 export default Skills;

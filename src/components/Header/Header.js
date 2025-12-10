@@ -1,41 +1,54 @@
-// src/components/Header/Header.js
-import React, { useState, useEffect } from 'react'; // 1. Import thêm useState, useEffect
+import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import { NavLink, Link } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa'; // Import icon menu
+
+// Import ảnh logo của bạn (Hãy thay đường dẫn đúng với ảnh của bạn)
+// Nếu chưa có ảnh, bạn có thể dùng tạm link online trong thẻ img bên dưới
+import logoImg from '../../assets/images/logo.jpg'; 
 
 function Header() {
-  // 2. Tạo state để theo dõi trạng thái cuộn
   const [isScrolled, setIsScrolled] = useState(false);
+  
+  // 1. State quản lý đóng/mở menu mobile
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // 3. Thêm "lắng nghe sự kiện" khi component được tải
   useEffect(() => {
     const handleScroll = () => {
-      // Nếu cuộn qua 50px, đặt state là true
       if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
-
-    // Thêm event listener
     window.addEventListener('scroll', handleScroll);
-
-    // Rất quan trọng: Gỡ bỏ event listener khi component bị "hủy"
-    // để tránh rò rỉ bộ nhớ (memory leak)
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []); // [] nghĩa là effect này chỉ chạy 1 lần lúc đầu
+  }, []);
 
-  // 4. Thêm class 'scrolled' một cách có điều kiện
   const headerClassName = `${styles.header} ${isScrolled ? styles.scrolled : ''}`;
 
-  return (
-    <header className={headerClassName}> {/* 5. Sử dụng class động */}
-      <Link to="/" className={styles.logo}>Portfolio</Link>
+  // 2. Hàm bật tắt menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
-      <nav className={styles.nav}>
+  // 3. Hàm đóng menu khi click vào link (UX tốt hơn)
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <header className={headerClassName}>
+      
+      {/* 4. LOGO ẢNH CÓ ANIMATION */}
+      <Link to="/" className={styles.logoWrapper} onClick={closeMobileMenu}>
+        <img src={logoImg} alt="Logo" className={styles.logoImage} />
+      </Link>
+
+      {/* 5. MENU DESKTOP (Ẩn trên mobile qua CSS) */}
+      <nav className={styles.navDesktop}>
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/education">Education</NavLink>
@@ -45,9 +58,36 @@ function Header() {
         <NavLink to="/contact">Contact</NavLink>
       </nav>
 
-      <Link to="/contact" className={styles.contactButton}>Contact Me</Link>
+      {/* 6. NÚT LIÊN HỆ (Ẩn trên mobile nếu muốn gọn) */}
+      <div className={styles.desktopBtn}>
+         <Link to="/contact" className={styles.contactButton}>Contact Me</Link>
+      </div>
+
+      {/* 7. NÚT HAMBURGER (Chỉ hiện trên mobile) */}
+      <div className={styles.hamburger} onClick={toggleMobileMenu}>
+        {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+      {/* 8. MENU MOBILE OVERLAY */}
+      <div className={`${styles.mobileNav} ${isMobileMenuOpen ? styles.active : ''}`}>
+        <nav className={styles.mobileNavLinks}>
+            <NavLink to="/" end onClick={closeMobileMenu}>Home</NavLink>
+            <NavLink to="/about" onClick={closeMobileMenu}>About</NavLink>
+            <NavLink to="/education" onClick={closeMobileMenu}>Education</NavLink>
+            <NavLink to="/skills" onClick={closeMobileMenu}>Skills</NavLink>
+            <NavLink to="/experience" onClick={closeMobileMenu}>Experience</NavLink>
+            <NavLink to="/projects" onClick={closeMobileMenu}>Projects</NavLink>
+            <NavLink to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
+            
+            {/* Nút contact trong menu mobile */}
+            <Link to="/contact" className={styles.contactButtonMobile} onClick={closeMobileMenu}>
+                Contact Me
+            </Link>
+        </nav>
+      </div>
+
     </header>
   );
 }
 
-export default Header;
+export default Header;  
