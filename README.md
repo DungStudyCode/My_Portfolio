@@ -33,7 +33,7 @@ This project was built using the following technologies:
 | **Styling** | CSS Modules, Flexbox, Grid, Responsive Design |
 | **Icons** | [React Icons](https://react-icons.github.io/react-icons/) (FontAwesome 6, SimpleIcons) |
 | **Logic/Utils** | EmailJS, React Hooks (useState, useEffect) |
-| **Deployment** | [🔴 THAY ĐỔI Ở ĐÂY: Vercel / Netlify / GitHub Pages] |
+| **Deployment** | [🔴Vercel] |
 
 ---
 

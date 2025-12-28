@@ -3,13 +3,13 @@ import styles from './Projects.module.css';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 // 1. IMPORT HÌNH ẢNH
-// --- Ảnh Project 1: Portfolio (Chụp màn hình trang web này và lưu vào assets)
+// --- Ảnh Project 1: Portfolio
 import portfolioImg from '../../assets/images/portfolio.png'; 
 
-// --- Ảnh Project 2: Task App (Nếu chưa có ảnh thật, tạm thời dùng link online ở dưới)
-// import project2 from '../../assets/project2.jpg'; 
+// --- Ảnh Project 2
+import techZone from '../../assets/images/techZone.png'; 
 
-// --- Ảnh Project 3: AI Waste Classification (Đã có từ bước trước)
+// --- Ảnh Project 3: AI Waste Classification
 import garbageImg from '../../assets/images/garbageclassification.png'; 
 
 const projectsData = [
@@ -23,15 +23,14 @@ const projectsData = [
     demoLink: "https://my-portfolio-xi-woad-15.vercel.app/" // Link demo chính là trang chủ
   },
 
-  // === PROJECT 2: TASK MANAGEMENT (Hoặc dự án khác) ===
+  // === PROJECT 2: TechZone - E-commerce Web Application ===
   {
-    title: "Task Management App",
+    title: "TechZone - E-commerce Web Application",
     description: "A productivity tool to manage tasks with drag-and-drop features, dark mode, and real-time updates.",
-    techStack: ["Vue.js", "Firebase", "Tailwind CSS"],
-    // Tạm thời dùng ảnh online để không bị lỗi nếu bạn chưa có file ảnh project2.jpg
-    image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&q=80",
-    githubLink: "https://github.com/yourusername/project2",
-    demoLink: "https://demo-project2.com"
+    techStack: ["ReactJS", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
+    image: techZone,
+    githubLink: "https://github.com/DungStudyCode/TechZone-Project",
+    demoLink: "https://tech-zone-project.vercel.app/"
   },
   
   // === PROJECT 3: AI WASTE CLASSIFICATION ===
